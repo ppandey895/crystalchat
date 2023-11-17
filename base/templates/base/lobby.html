@@ -1,0 +1,53 @@
+{% extends "base/index.html" %}
+{% load static %}
+{% block content %}
+<main id='lobby'>
+    <section id='form-container'>
+        <div id='hero'>
+            <img src='{% static "images/logo.svg" %}' />
+            <h2>Welcome to CrystalChat</h2>
+            <p>Quality Video Collaboration</p>
+        </div>
+        <form id='form'>
+            <div id='form-field'>
+                <input id='room-name' name='room' type='text' placeholder='room name...' style='text-transform: lowercase' />
+            </div>
+
+            <div id='form-field'>
+                <input id='username' name='username' type='text' placeholder='ben dover' />
+            </div>
+
+            {% comment %} <div id='form-field'>
+                <input id='room-name' name='room' type='text' style='text-transform: lowercase' />
+            </div> {% endcomment %}
+
+            <button type='submit'>Join Room</button>
+        </form>
+    </section>
+</main>
+
+<script type='text/javascript'>
+    let form = document.querySelector('#form');
+
+    let handleSubmit = async (e) => {
+        e.preventDefault();
+        let room = e.target.room.value.toLowerCase();
+        let name = e.target.username.value.toLowerCase();
+
+        let response = await fetch(`/get_token/?channel=${room}`);
+        let data = await response.json();
+        let { token, uid } = data;
+        console.log(data);
+        sessionStorage.setItem('token', token);
+        sessionStorage.setItem('uid', uid);
+        sessionStorage.setItem('room', room);
+        sessionStorage.setItem('name', name);
+
+        window.open('/room', '_self');
+    }
+
+    form.addEventListener('submit', handleSubmit);
+</script>
+{% endblock content %}
+
+
