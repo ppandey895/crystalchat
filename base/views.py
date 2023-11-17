@@ -6,14 +6,11 @@ import time
 import json
 from .models import RoomMember
 from django.views.decorators.csrf import csrf_exempt
-import environ
 
-
-env = environ.Env()
 
 def getToken(request):
-    appId = env("APP_ID")
-    appCertificate = env("APP_CERTIFICATE")
+    appId = 'd75afdcb3e064317835ca39c4ebe7d97'
+    appCertificate = '7de5abda4a4e487da7efcd03f62c4934'
     channelName = request.GET.get('channel')
     uid = random.randint(1, 230)
     role = 1
