@@ -37,6 +37,7 @@ main#lobby #hero {
     flex-direction: column;
     align-items: center;
     gap: 0.75rem;
+    text-align: center;
 }
 
 main#lobby #hero img {
@@ -44,6 +45,7 @@ main#lobby #hero img {
 }
 
 main#lobby #form-container {
+    width: clamp(350px, 60vw, 600px);
     padding: 4rem;
     display: flex;
     flex-direction: column;
@@ -109,10 +111,10 @@ main#room {
 #video-streams .video-container {
     position: relative;
     flex-grow: 1;
-    min-width: 400px;
+    min-width: 320px;
     width: 40%;
     height: fit-content;
-    padding: 1rem 1.5rem 1.5rem;
+    padding: 0 0.75rem 0.75rem;
     background-color: #eee;
     border-radius: 6px;
     box-shadow: 2px 4px 5px rgb(0, 0, 0, 0.3);
@@ -121,8 +123,8 @@ main#room {
 .video-container .username-wrapper {
     z-index: 10;
     position: absolute;
-    left: 2rem;
-    top: 2rem;
+    left: 1.5rem;
+    top: 1.5rem;
     width: fit-content;
     border-radius: 4px;
     padding: 0.5rem 1rem;
@@ -175,4 +177,16 @@ div[class^='icon-wrapper-'] img {
 
 #controls-wrapper .icon-wrapper-3 img {
     background-color: #f44 !important;
+}
+
+
+@media only screen and (max-width: 768px) {
+    html {
+        font-size: 11px;
+    }
+
+    main#room {
+        margin: 0rem;
+        margin-top: 2rem;
+    }
 }
